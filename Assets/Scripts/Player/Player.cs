@@ -1,9 +1,10 @@
 using UnityEngine;
+using VContainer;
 
 public class Player : MonoBehaviour
 {
-    [SerializeField] private GameObject _deathMenu;
-    [SerializeField] private GameObject _dynamic;
+    [Inject, Key("death menu")] private GameObject _deathMenu;
+    [Inject, Key("dynamic objects")] private GameObject _dynamicObjects;
 
     private PlayerInput _input;
 
@@ -15,7 +16,7 @@ public class Player : MonoBehaviour
     public void Die()
     {
         _deathMenu.SetActive(true);
-        _dynamic.SetActive(false);
+        _dynamicObjects.SetActive(false);
 
         _input.DisableControl();
     }

@@ -11,6 +11,7 @@ public class PlayerInput : MonoBehaviour
     private void Awake()
     {
         PlayerControl = new InputSystem_Actions();
+
         PlayerControl.Player.Jump.started += ctx => OnJumpStarted();
         PlayerControl.Player.Jump.canceled += ctx => OnJumpCanceled();
     }

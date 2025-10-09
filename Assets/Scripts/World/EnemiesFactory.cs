@@ -1,9 +1,11 @@
 using System.Collections.Generic;
 using UnityEngine;
+using VContainer;
 
 public class EnemiesFactory : MonoBehaviour
 {
-    [SerializeField] private GameObject _enemyPrefab;
+    [Inject, Key("enemy prefab")] private GameObject _enemyPrefab;
+    [Inject, Key("spawn point")] private Transform _spawnPoint;
 
     [SerializeField] private float _minFrequency;
     [SerializeField] private float _maxFrequency;
@@ -14,8 +16,6 @@ public class EnemiesFactory : MonoBehaviour
     [SerializeField] private float _maxEnemySize;
     [SerializeField] private float _minEnemyDispersion;
     [SerializeField] private float _maxEnemyDispersion;
-
-    [SerializeField] private Transform _spawnPoint;
 
     [SerializeField] private float _spawnPointOffset;
 
@@ -61,7 +61,7 @@ public class EnemiesFactory : MonoBehaviour
             _spawnPointPosition.x,
             _spawnPointPosition.y + Random.Range(-_spawnPointOffset, _spawnPointOffset));
 
-        if (Physics2D.OverlapCircle(teleportPosition, _maxEnemySize) == false)
+        if (Physics2D.OverlapCircleAll(teleportPosition, _maxEnemySize).Length == 0)
         {
             enemy.transform.position = teleportPosition;
         }

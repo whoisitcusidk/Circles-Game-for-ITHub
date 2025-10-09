@@ -1,13 +1,13 @@
 using UnityEngine;
+using VContainer;
 
 public class CoinsFactory : MonoBehaviour
 {
-        [SerializeField] private GameObject _coinPrefab;
+        [Inject, Key("coin prefab")] private GameObject _coinPrefab;
+        [Inject, Key("spawn point")] private Transform _spawnPoint;
 
         [SerializeField] private float _minFrequency;
         [SerializeField] private float _maxFrequency;
-
-        [SerializeField] private Transform _spawnPoint;
 
         [SerializeField] private float _spawnPointOffset;
 
